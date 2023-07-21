@@ -40,6 +40,7 @@ public class CredentialRecyclerViewAdapter extends RecyclerView.Adapter<Credenti
         holder.txtCredId.setText(credData.getId());
         holder.txtSchemaId.setText(credData.getSchemaId());
         holder.txtCredDefId.setText(credData.getCredDefId());
+
     }
 
     @Override
@@ -51,6 +52,7 @@ public class CredentialRecyclerViewAdapter extends RecyclerView.Adapter<Credenti
         public final TextView txtCredId;
         public final TextView txtSchemaId;
         public final TextView txtCredDefId;
+
 
         public ViewHolder(ItemCredentialBinding binding) {
             super(binding.getRoot());
