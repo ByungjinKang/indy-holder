@@ -45,9 +45,10 @@ public class CredentialRecyclerViewAdapter extends RecyclerView.Adapter<Credenti
         Map<String, String> attrs = credData.getAttrs();
         String certificationName = attrs != null ? attrs.get("Certification Name") : null;
         String Name = attrs != null ? attrs.get("Name") : null;
+        String Acceptance_date = attrs != null ? attrs.get("Acceptance date") : null;
         holder.binding.txtCredId.setText(certificationName);
         holder.binding.txtSchemaId.setText(Name);
-        holder.binding.txtCredDefId.setText(credData.getCredDefId());
+        holder.binding.txtCredDefId.setText(Acceptance_date);
     }
 
     @Override
