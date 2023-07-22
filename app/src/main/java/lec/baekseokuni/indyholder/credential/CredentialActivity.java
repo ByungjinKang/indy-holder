@@ -1,17 +1,17 @@
 package lec.baekseokuni.indyholder.credential;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.TextView;
-
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Map;
 
+import kotlin.Pair;
 import kr.co.bdgen.indywrapper.data.Credential;
 import lec.baekseokuni.indyholder.R;
 
@@ -27,18 +27,36 @@ public class CredentialActivity extends AppCompatActivity {
             appBar.setTitle("증명서 상세");
             appBar.setDisplayHomeAsUpEnabled(true);
         }
-        //증명서 목록에서 받아온 상세 증명서 데이터
+
         Credential cred = getIntent().getParcelableExtra(INTENT_EXTRA_ARG_KEY_CRED);
         if (cred == null)
             return;
-        Map<String, String> attrs = cred.getAttrs();
-        if (attrs == null)
-            attrs = new HashMap<>();
-        RecyclerView rvAttributes = findViewById(R.id.list_attribute);
-        AttributeRecyclerViewAdapter adapter = new AttributeRecyclerViewAdapter(attrs);
-        rvAttributes.setAdapter(adapter);
 
+        Map<String, String> attrs = cred.getAttrs();
+//        if (attrs == null)
+//            attrs = new HashMap<>();
+//        RecyclerView rvAttributes = findViewById(R.id.list_attribute);
+//        AttributeRecyclerViewAdapter adapter = new AttributeRecyclerViewAdapter(attrs);
+//        rvAttributes.setAdapter(adapter);
+
+
+        ArrayList<Pair<String, String>> attrList = new ArrayList<>();
+        attrList.add(new Pair<>("자격증 이름", attrs.get("Certification Name")));
+        attrList.add(new Pair<>("자격증 번호", attrs.get("Certificate number")));
+        attrList.add(new Pair<>("이름", attrs.get("Name")));
+        attrList.add(new Pair<>("생년월일", attrs.get("Birth date")));
+        attrList.add(new Pair<>("휴대폰 번호", attrs.get("Phonenumber")));
+        attrList.add(new Pair<>("합격일자", attrs.get("Acceptance date")));
+        attrList.add(new Pair<>("발행일자", attrs.get("Issue date")));
+        attrList.add(new Pair<>("발행기관", attrs.get("Issuer")));
+
+
+        RecyclerView recyclerView = findViewById(R.id.list_attribute);
+        recyclerView.setAdapter(new AttributeRecyclerViewAdapter(attrList));
     }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
