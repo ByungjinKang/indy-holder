@@ -16,10 +16,10 @@ import kotlin.Pair;
 import lec.baekseokuni.indyholder.databinding.ItemAttributeBinding;
 
 public class AttributeRecyclerViewAdapter extends RecyclerView.Adapter<AttributeRecyclerViewAdapter.ViewHolder> {
-    private final List<Map.Entry<String, String>> attrList;
+    private final List<Pair<String, String>> attrList;
 
-    public AttributeRecyclerViewAdapter(Map<String, String> attributes) {
-        attrList = new ArrayList<>(attributes.entrySet());
+    public AttributeRecyclerViewAdapter(List<Pair<String, String>> attributes) {
+        this.attrList = attributes;
     }
 
     @NonNull
@@ -30,9 +30,9 @@ public class AttributeRecyclerViewAdapter extends RecyclerView.Adapter<Attribute
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Map.Entry<String, String> attribute = attrList.get(position);
-        holder.txtAttrName.setText(attribute.getKey());
-        holder.txtAttrValue.setText(attribute.getValue());
+        Pair<String, String> attribute = attrList.get(position);
+        holder.txtAttrName.setText(attribute.getFirst());
+        holder.txtAttrValue.setText(attribute.getSecond());
     }
 
     @Override
@@ -41,13 +41,13 @@ public class AttributeRecyclerViewAdapter extends RecyclerView.Adapter<Attribute
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public final TextView txtAttrName;
-        public final TextView txtAttrValue;
+        TextView txtAttrValue;
+        TextView txtAttrName;
 
         public ViewHolder(ItemAttributeBinding binding) {
             super(binding.getRoot());
-            txtAttrName = binding.txtAttributeName;
-            txtAttrValue = binding.txtAttributeValue;
+            txtAttrName = binding.txtAttrName;
+            txtAttrValue = binding.txtAttrValue;
         }
 
         @NonNull
