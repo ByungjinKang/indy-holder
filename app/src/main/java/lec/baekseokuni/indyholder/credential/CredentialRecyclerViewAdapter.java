@@ -1,8 +1,10 @@
 package lec.baekseokuni.indyholder.credential;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -42,13 +44,22 @@ public class CredentialRecyclerViewAdapter extends RecyclerView.Adapter<Credenti
                 return;
             onDeleteCred.accept(credData);
         });
+        holder.binding.btnSubmit.setOnClickListener(v -> {
+            String url = "indy://verify?schemaId=EtAGQxkwjMBgCkG4M6jXjP:2:National Technical Certificate:1.1";
+
+            // Create an intent to open the web page with the specified URL
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            v.getContext().startActivity(intent);
+        });
         Map<String, String> attrs = credData.getAttrs();
-        String certificationName = attrs != null ? attrs.get("Certification Name") : null;
         String Name = attrs != null ? attrs.get("Name") : null;
-        String Acceptance_date = attrs != null ? attrs.get("Acceptance date") : null;
-        holder.binding.txtCredId.setText(certificationName);
-        holder.binding.txtSchemaId.setText(Name);
-        holder.binding.txtCredDefId.setText(Acceptance_date);
+        String certificationName = attrs != null ? attrs.get("Certification Name") : null;
+        String AcceptanceSDate = attrs != null ? attrs.get("Acceptance date") : null;
+
+        holder.binding.txtCredId.setText(Name);
+        holder.binding.txtSchemaId.setText(certificationName);
+
+        holder.binding.txtCredDefId.setText(AcceptanceSDate);
     }
 
     @Override

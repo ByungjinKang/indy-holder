@@ -27,13 +27,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        >
 
         <Button
             android:id="@+id/btn_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
+            android:background="@android:color/transparent"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="동의 및 제출" />
 
     </LinearLayout>
