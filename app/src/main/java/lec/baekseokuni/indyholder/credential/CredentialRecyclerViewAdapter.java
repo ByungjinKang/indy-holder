@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import kr.co.bdgen.indywrapper.data.Credential;
@@ -40,8 +42,11 @@ public class CredentialRecyclerViewAdapter extends RecyclerView.Adapter<Credenti
                 return;
             onDeleteCred.accept(credData);
         });
-        holder.binding.txtCredId.setText(credData.getId());
-        holder.binding.txtSchemaId.setText(credData.getSchemaId());
+        Map<String, String> attrs = credData.getAttrs();
+        String certificationName = attrs != null ? attrs.get("Certification Name") : null;
+        String Name = attrs != null ? attrs.get("Name") : null;
+        holder.binding.txtCredId.setText(certificationName);
+        holder.binding.txtSchemaId.setText(Name);
         holder.binding.txtCredDefId.setText(credData.getCredDefId());
     }
 
