@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(testDeeplink));
             startActivity(intent);
             finish();
+        } else{
+            Toast.makeText(this,"일치하는 이름이 없습니다",Toast.LENGTH_SHORT).show();
         }
     };
     View.OnClickListener onNavToCredList = v -> {
