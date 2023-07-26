@@ -58,7 +58,6 @@ public class CredentialRecyclerViewAdapter extends RecyclerView.Adapter<Credenti
 
         holder.binding.txtCredId.setText(Name);
         holder.binding.txtSchemaId.setText(certificationName);
-
         holder.binding.txtCredDefId.setText(AcceptanceSDate);
     }
 
